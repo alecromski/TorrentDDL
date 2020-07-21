@@ -2,8 +2,6 @@
 import argparse, os, sys
 from os import listdir
 
-
-
 def space(variable):
     var_mod = []
     for i in range(0,len(variable)):
@@ -37,7 +35,7 @@ def init(args):
         print("\nInput valid limit expected.[0<P<=50]\nUse --help for more\n")
         sys.exit()
     else:
-        main(title, limite)
+        print(title, limite)
 
 
 def main(title, limite):
