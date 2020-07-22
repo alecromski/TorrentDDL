@@ -2,8 +2,6 @@
 import argparse, os, sys
 from os import listdir
 
-
-
 def space(variable):
     var_mod = []
     for i in range(0,len(variable)):

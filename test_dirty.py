@@ -1,4 +1,5 @@
 def main():
+    import sys
     from tabulate import tabulate
     header = ["Select", "Name", "Description"]
     select_source = [["1", "Nyaa torrent", "Anime torrent tracker"], ["2", "TorrentZ²", "torrentz² search engine"]]
