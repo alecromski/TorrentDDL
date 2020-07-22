@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/python3
 import argparse, os, sys
 from os import listdir
 
@@ -15,7 +15,6 @@ def space(variable):
 def init(args):
     title = args.title
     title = space(title)
-    limite = args.limite
     if args.clear:
         home = os.path.expanduser("~")
         temp_dir = home+"/GIT/Torse/tmp"
@@ -31,26 +30,31 @@ def init(args):
     if title == None:
         print("\nInput string expected.\nUse --help for more\n")
         sys.exit()
-    elif limite <= 0 or limite>=50:
-        print("\nInput valid limit expected.[0<P<=50]\nUse --help for more\n")
-        sys.exit()
     else:
-        print(title, limite)
+        select_source(title)
 
 
-def main(title, limite):
-    try:
-        from bs4 import BeautifullSoup
-        import requests
-    except ImportError as error:
-        print(error)
-        print('Please install it with $pip install')
+def select_source(title):
+    from tabulate import tabulate
+    import Download_file
+    header = ["Select", "Name", "Description"]
+    select_source = [["1", "Nyaa torrent", "Anime torrent tracker"], ["2", "TorrentZ²", "torrentz² search engine"]]
+    print(tabulate(select_source, header, tablefmt="fancy_grid"))
+    select = input()
+    if select == None:
+        select_source()
+    elif select == '1':
+        Download_file.nyaa(title)
+    elif select == '2':
+        Download_file.torrentsquare(title)
+    else:
+        print("Know what you want befor you nerd")
+        sys.exit()
 
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description="A simple torrent search tool.")
 	parser.add_argument("title", help="Enter search string", nargs="?", default=None)
-	parser.add_argument("-l", "--limite", type=int, help="Number of pages to fetch results from (1 page = 30 results).\n [default: 1]", default=1, dest="limite")
 	parser.add_argument("-c", "--clear", action="store_true", default=False, help="Clear all torrent description HTML files and exit.")
 	args = parser.parse_args()
 	init(args)
