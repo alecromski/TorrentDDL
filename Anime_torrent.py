@@ -56,8 +56,6 @@ def init(args):
 			manga.scanfr(title_full)
 		else:
 			print("Select properly with the index")
-			
-		print(title_full)
 
 
 parser = argparse.ArgumentParser(description="A simple torrent search tool.")
